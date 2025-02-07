@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        {% if stocks %}
+            <div class="mb-3">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th> Stock </th>
+                            <th> Share price </th>
+                            <th> Quantity </th>
+                            <th> Total Price</th>
+                            <th> Buy </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {{ stocks.symbol }}</td>
+                            <td id="stock-price"> {{ stocks.price }}</td>
+                            <td>
+                                <input id="quantity" name="quantity" type="number" min="1" step="1" autocomplete="off" autofocus class="form-control mx-auto w-auto"  placeholder="Quantity" required oninput="calculateTotal()">
+                            </td>
+                            <td id="total-price">{{ stocks.price }}</td>
+                            <td>
+                                <button class="btn btn-primary" type="submit">Buy</button>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+            </div>
+        {% else %}
+            <p> No stock information available. Please enter a valid stock symbol. </p>
+        {% endif %}
+    </form>
+
+    <script>
+        function calculateTotal() {
+            var price = parseFloat(document.getElementById("stock-price").textContent);
+            var quantity = parseInt(document.getElementById("quantity").value);
+            var totalPrice = price * (quantity || 0);
+            document.getElementById("total-price").textContent = totalPrice.toFixed(2);
+        }
+    </script>
+
+{% endblock %}

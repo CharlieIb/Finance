@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+   <h1>
+        Welcome, {{ username }}!
+   </h1>
+   <h2>
+        {{ username }}'s Portfolio
+   </h2>
+   {% if stocks %}
+   <table class="styled-table">
+        <caption>Portfolio of Stocks</caption>
+        <thead>
+            <tr>
+                <th> Stock </th>
+                <th> Quantity </th>
+                <th> Price </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td> {{ stock.stock_id }} </td>
+                <td> {{ stock.total_quantity }} </td>
+                <td> {{ stock.average_price}} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+            <p> No stock information available. Please enter a valid stock symbol. </p>
+    {% endif %}
+{% endblock %}

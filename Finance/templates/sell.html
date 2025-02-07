@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+   <h2>
+        {{ username }}'s Portfolio
+   </h2>
+   {% if stocks %}
+   <table class="styled-table">
+        <caption>Portfolio of Stocks</caption>
+        <thead>
+            <tr>
+                <th> Stock </th>
+                <th> Quantity </th>
+                <th> Price </th>
+                <th> Quantity to be sold</th>
+                <th> Sell</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td> {{ stock.stock_id }} </td>
+                <td> {{ stock.total_quantity }} </td>
+                <td> {{ stock.average_price}} </td>
+                <td>
+                    <form method="POST" action="{{ url_for('sell') }}">
+                        <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
+                        <input class="form-control mx-auto w-auto" name="quantity" placeholder="Quantity" type="number" min="1" max="{{ stock.total_quantity }}" required>
+                </td>
+                <td>
+                        <button class="btn btn-primary" type="submit">Sell</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+            <p> No stocks available in your portfolio. </p>
+    {% endif %}
+{% endblock %}

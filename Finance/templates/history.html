@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+   <h2>
+        {{ username }}'s Transactions
+   </h2>
+   {% if stocks %}
+   <table class="styled-table">
+        <caption>Portfolio of Stocks</caption>
+        <thead>
+            <tr>
+                <th> Stock </th>
+                <th> Type </th>
+                <th> Quantity </th>
+                <th> Price per share</th>
+                <th> Total</th>
+                <th> Purchase Date </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td> {{ stock.stock_id }} </td>
+                <td> {{ stock.transaction_type}}</td>
+                <td> {{ stock.quantity }} </td>
+                <td class="{% if stock.formatted_price < 0 %}negative{% else %}positive{% endif %}">
+                    {{ stock.formatted_price}}
+                </td>
+                <td class="{% if stock.formatted_price < 0 %}negative{% else %}positive{% endif %}">
+                    {{ (stock.formatted_price)*(stock.quantity) }}
+                </td>
+                <td> {{ stock.formatted_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+            <p> No stock information available. Please enter a valid stock symbol. </p>
+    {% endif %}
+{% endblock %}

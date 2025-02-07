@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Account management
+{% endblock %}
+
+{% block main %}
+   <h1>
+        Account Management
+   </h1>
+<h2 style="text-align:left">Wallet options</h2>
+   <div class="form-container a" style="position: relative">
+       <button class="btn btn-primary" type="button" onclick="showBalance()">Display Balance</button>
+        <div id="balance-box">
+            <span>Your Balance: <strong>${{ cash }}</strong></span>
+        </div>
+       <form action="/cash" method="POST">
+           <input type="hidden" name="form_type" value="add_cash">
+
+        <button id="add_cash" class="btn btn-primary" type="button" onclick="showInputs2()">Add Cash</button>
+           <input class="form-control input-hidden" placeholder="Amount" type="text" id="add_amount" name="add_amount">
+           <button id="add_cash_confirm" class="btn btn-primary input-hidden" type="button">Confirm</button>
+       </form>
+    </div>
+   <h2 style="text-align:left">Password settings</h2>
+   <div class="form-container b">
+        <form action="/account" method="post">
+            <input type="hidden" name="form_type" value="change_password">
+            <button id="changepassword" class="btn btn-primary" type="button" onclick="showInputs()"> Change Password</button>
+            <div class="input-container">
+                <input
+                    class="form-control  input-hidden"
+                    placeholder="Old Password"
+                    type="password"
+                    id="oldpassword"
+                    name="oldpassword">
+                <input
+                    class="form-control input-hidden"
+                    placeholder="New password"
+                    type="password"
+                    id="password1"
+                    name="password1">
+                <input
+                    class="form-control  input-hidden"
+                    placeholder="Re-type password"
+                    type="password"
+                    id="password2"
+                    name="password2">
+                <button id="changepassword2" class="btn btn-primary input-hidden" type="submit"> Change password</button>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        function showInputs() {
+            // Select the input elements by their ID
+            var oldpassword = document.getElementById("oldpassword");
+            var password1 = document.getElementById("password1");
+            var password2 = document.getElementById("password2");
+
+
+            // Change the display style from 'none' to 'block' to make them visible
+            document.getElementById("changepassword").style.display = "None";
+
+            oldpassword.classList.remove("input-hidden");
+            oldpassword.classList.add("input-visible");
+            password1.classList.remove("input-hidden");
+            password1.classList.add("input-visible");
+            password2.classList.remove("input-hidden");
+            password2.classList.add("input-visible");
+            changepassword2.classList.remove("input-hidden");
+            changepassword2.classList.add("input-visible");
+        }
+        function showInputs2() {
+
+            var add_amount = document.getElementById("add_amount");
+            var add_cash_confirm = document.getElementById("add_cash_confirm");
+
+
+            document.getElementById("add_cash").style.display = "None"
+
+            // Change the display style from hidden to visible to make them visible
+            add_amount.classList.remove("input-hidden");
+            add_amount.classList.add("input-visible");
+            add_cash_confirm.classList.remove("input-hidden");
+            add_cash_confirm.classList.add("input-visible");
+        }
+        function showBalance() {
+            var balanceBox = document.getElementById("balance-box");
+            if (balanceBox.style.visibility === "hidden") {
+                balanceBox.style.visibility = "visible"
+            } else {
+                balanceBox.style.visibility = "hidden"
+            }
+        }
+    </script>
+
+{% endblock %}

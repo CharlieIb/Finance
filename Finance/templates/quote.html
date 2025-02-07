@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <h2> Enter a stock symbol to get a quote</h2>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Enter stock symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Get Quote</button>
+        {% if stocks %}
+            <div class="mb-3">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th> Stock </th>
+                            <th> Share price </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {{ stocks.symbol }}</td>
+                            <td> {{ stocks.price }}</td>
+                        </tr>
+                    </tbody>
+            </table>
+            </div>
+        {% else %}
+            <p> No stock information available. Please enter a valid stock symbol. </p>
+        {% endif %}
+    </form>
+{% endblock %}

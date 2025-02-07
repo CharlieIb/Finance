@@ -1,0 +1,137 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+
+
+/* styles.css */
+table.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid #a9a9a9; /* Light black border around the entire table */
+}
+
+table.styled-table caption {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+table.styled-table thead tr {
+    background-color: #add8e6; /* Light blue */
+    color: #000000; /* Black text */
+}
+
+table.styled-table th, table.styled-table td {
+    padding: 12px 15px;
+    border: 1px solid #a9a9a9; /* Light black lines separating columns */
+}
+
+table.styled-table tbody tr {
+    border-bottom: 1px solid #a9a9a9; /* Light black lines separating rows */
+}
+
+table.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3; /* Alternate row color */
+}
+
+table.styled-table tbody tr:last-of-type {
+    border-bottom: 1px solid #a9a9a9; /* Bottom border */
+}
+
+
+input.form-control {
+    width: 80%; /* Adjust input width */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Faint border with slight transparency */
+    border-radius: 6px;
+}
+
+.btn-primary {
+    background-color: blue; /* Change button color */
+    color: white; /* Button text color */
+    border: none;
+    padding: 8px 16px; /* Button padding */
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: darkblue; /* Darker shade on hover */
+}
+
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+
+/* Style for account: hiding and showing content */
+
+.input-hidden {
+    visibility: hidden;
+}
+
+.input-visible {
+    visibility: visible;
+}
+
+.form-container.a{
+    text-align: left;
+    max-width: 400px;
+    margin-top: 0;
+    padding: 20px;
+    min-height: 300px
+}
+
+.form-container.b{
+    text-align: left;
+    max-width: 400px;
+    margin-top: 0;
+    padding: 20px;
+    min-height: 400px
+}
+
+
+.input-container {
+    margin-top: 10px;
+}
+
+.form-control {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Account page specific CSS */
+
+#balance-box {
+    visibility: hidden; /* Initially hidden */
+    position: inline-flex;
+    left: 120px; /* Adjust distance from button */
+    top: 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-width: 150px;
+    background-color: #f9f9f9;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.divider {
+    display: inline-block;
+    margin: 50px;
+}
