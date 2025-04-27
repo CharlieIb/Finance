@@ -18,7 +18,6 @@ nav .navbar-brand .white
     background-color: #001a4d !important;
 }
 
-
 /* styles.css */
 table.styled-table {
     width: 100%;
@@ -26,7 +25,8 @@ table.styled-table {
     margin: 25px 0;
     font-size: 18px;
     text-align: center;
-    border: 2px solid #a9a9a9; /* Light black border around the entire table */
+    border-radius: 8px; /* Add rounded corners to the table */
+    overflow: hidden;  /* Ensure rounded corners don't clip */
 }
 
 table.styled-table caption {
@@ -36,31 +36,43 @@ table.styled-table caption {
 }
 
 table.styled-table thead tr {
-    background-color: #add8e6; /* Light blue */
-    color: #000000; /* Black text */
+    background-color: #001a4d;
+    color: #ffffff;
 }
 
-table.styled-table th, table.styled-table td {
+table.styled-table th,
+table.styled-table td {
     padding: 12px 15px;
-    border: 1px solid #a9a9a9; /* Light black lines separating columns */
+    border: none;
 }
 
 table.styled-table tbody tr {
-    border-bottom: 1px solid #a9a9a9; /* Light black lines separating rows */
+    border-bottom: 1px solid #a9a9a9;
 }
 
 table.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3; /* Alternate row color */
+    background-color: #f3f3f3;
 }
 
 table.styled-table tbody tr:last-of-type {
-    border-bottom: 1px solid #a9a9a9; /* Bottom border */
+    border-bottom: 1px solid #a9a9a9;
 }
+
+table.styled-table tbody tr:hover {
+    background-color: #d3d3d3;
+}
+
+table.styled-table td.positive {
+    color: green;
+}
+
+table.styled-table td.negative {
+    color: red;
 
 
 input.form-control {
     width: 80%; /* Adjust input width */
-    border: 1px solid rgba(0, 0, 0, 0.2); /* Faint border with slight transparency */
+    border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 6px;
 }
 
