@@ -35,7 +35,7 @@ def index():
         db.session.query(
             StockPortfolio.stock_id,
             sa.func.sum(StockPortfolio.quantity).label('total_quantity'),
-            sa.func.round(sa.func.avg(StockPortfolio.purchase_price), 2).label('average_price')
+            sa.func.round(sa.func.avg(StockPortfolio.buy_price), 2).label('average_price')
         )
         .filter(StockPortfolio.user_id == user_id)
         .group_by(StockPortfolio.stock_id)
@@ -108,18 +108,18 @@ def buy():
             if portfolio_entry:
                 # If the stock already exists in the portfolio, update the quantity and average price
                 total_quantity = portfolio_entry.quantity + quantity
-                total_cost = (portfolio_entry.quantity * portfolio_entry.purchase_price) + (quantity * stock_price)
+                total_cost = (portfolio_entry.quantity * portfolio_entry.buy_price) + (quantity * stock_price)
                 average_price = total_cost / total_quantity
 
                 portfolio_entry.quantity = total_quantity
-                portfolio_entry.purchase_price = average_price
+                portfolio_entry.buy_price = average_price
             else:
                 # If the stock is not in the portfolio, create a new entry
                 portfolio_entry = StockPortfolio(
                     user_id=current_user.id,
                     stock_id=symbol,
                     quantity=quantity,
-                    purchase_price=stock_price
+                    buy_price=stock_price
                 )
                 db.session.add(portfolio_entry)
 
@@ -166,9 +166,9 @@ def history():
         }
 
         # Format the price based on the transaction type
-        if transaction.transaction_type == 'Purchase':
+        if transaction.transaction_type == 'buy':
             stock['formatted_price'] = -abs(transaction.price)
-        elif transaction.transaction_type == 'Sale':
+        elif transaction.transaction_type == 'sell':
             stock['formatted_price'] = abs(transaction.price)
 
         stocks.append(stock)
@@ -306,7 +306,7 @@ def sell():
         db.session.query(
             StockPortfolio.stock_id,
             sa.func.sum(StockPortfolio.quantity).label('total_quantity'),
-            sa.func.round(sa.func.avg(StockPortfolio.purchase_price), 2).label('average_price')
+            sa.func.round(sa.func.avg(StockPortfolio.buy_price), 2).label('average_price')
         )
         .filter(StockPortfolio.user_id == user_id)
         .group_by(StockPortfolio.stock_id)
