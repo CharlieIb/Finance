@@ -1,27 +1,16 @@
-from flask_sqlalchemy import SQLAlchemy
+from app import app
+import sqlalchemy as sa
 from sqlalchemy import text
-from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask import render_template, redirect, url_for, flash, request, send_file, send_from_directory
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import apology, login_required, lookup, usd
+from flask_login import current_user, login_user, logout_user, login_required
+from app.helpers import apology, login_required, lookup, usd
 from datetime import datetime
 
-# Configure application
-app = Flask(__name__)
-
-app.secret_key = 'your_secret_key'
-
-# Custom filter
-app.jinja_env.filters["usd"] = usd
-
-# Configure session to use filesystem (instead of signed cookies)
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
+from app import db
 
 
-# Configure CS50 Library to use SQLite database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #Not setting this results in a performance warning
-db = SQLAlchemy(app)
+
 
 @app.after_request
 def after_request(response):
@@ -36,10 +25,8 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
+    user_id = current_user.id
 
-    user_id = session["user_id"]
-    print(session)
-    print(user_id)
     # Fetch the username from the database (dictionary)
     result = db.session.execute(
                         text("SELECT username FROM users WHERE id = :user_id"),
