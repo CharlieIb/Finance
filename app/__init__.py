@@ -4,7 +4,7 @@ from jinja2 import StrictUndefined
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from werkzeug.security import generate_password_hash
-from app.helpers import usd
+from app.utils.helpers import usd
 
 
 # Configure application
@@ -21,7 +21,7 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 from app import views
-from app.debug_utils import reset_db
+from app.utils.debug_utils import reset_db
 
 @app.shell_context_processor
 def make_shell_context():
