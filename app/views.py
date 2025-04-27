@@ -164,13 +164,6 @@ def history():
             "transactionTime": transaction.transaction_time.strftime('%Y-%m-%d %H:%M:%S'),
             "formatted_time": transaction.transaction_time.strftime('%B %d %Y at %I:%M %p')
         }
-
-        # Format the price based on the transaction type
-        if transaction.transaction_type == 'buy':
-            stock['formatted_price'] = -abs(transaction.price)
-        elif transaction.transaction_type == 'sell':
-            stock['formatted_price'] = abs(transaction.price)
-
         stocks.append(stock)
 
     return render_template("history.html", username=username, stocks=stocks)

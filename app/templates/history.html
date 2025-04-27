@@ -27,11 +27,13 @@
                 <td> {{ stock.stock_id }} </td>
                 <td> {{ stock.transaction_type}}</td>
                 <td> {{ stock.quantity }} </td>
-                <td class="{% if stock.formatted_price < 0 %}negative{% else %}positive{% endif %}">
-                    {{ stock.formatted_price}}
+                <td class="{% if stock.transaction_type == 'buy' %}negative{% else %}positive{% endif %}">
+                    {% if stock.transaction_type == 'buy' %}-{% else %}{% endif %}
+                    {{ '£{:,.2f}'.format(stock.price) }}
                 </td>
-                <td class="{% if stock.formatted_price < 0 %}negative{% else %}positive{% endif %}">
-                    {{ (stock.formatted_price)*(stock.quantity) }}
+                <td class="{% if stock.transaction_type == 'buy' %}negative{% else %}positive{% endif %}">
+                    {% if stock.transaction_type == 'buy' %}-{% else %}{% endif %}
+                    {{ '£{:,.2f}'.format((stock.price)*(stock.quantity)) }}
                 </td>
                 <td> {{ stock.formatted_time }}</td>
             </tr>
