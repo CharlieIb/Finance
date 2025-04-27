@@ -3,11 +3,19 @@ nav .navbar-brand
 {
     font-size: xx-large;
 }
-
+.navbar-dark .navbar-nav .nav-link {
+    font-weight: bold;
+}
+.navbar-dark .navbar-brand {
+    font-weight: bold;
+}
 /* Colors for brand */
-nav .navbar-brand .red
+nav .navbar-brand .white
 {
-    color: #ea433b;
+    color: #ffffff;
+}
+.navbar-dark {
+    background-color: #001a4d !important;
 }
 
 
