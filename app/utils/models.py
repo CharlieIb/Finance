@@ -53,7 +53,7 @@ class StockPortfolio(db.Model):
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('users.id'))
     stock_id: so.Mapped[str] = so.mapped_column(sa.String(10), nullable=False)
     quantity: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
-    purchase_price: so.Mapped[float] = so.mapped_column(sa.Float, nullable=False)
+    buy_price: so.Mapped[float] = so.mapped_column(sa.Float, nullable=False)
 
     # Relationships
     user: so.Mapped['User'] = so.relationship(back_populates='portfolio')

@@ -59,7 +59,7 @@ def reset_db():
                     user_id=user.id,
                     stock_id=stock_id,
                     quantity=quantity,
-                    purchase_price=price  # Or some average if needed
+                    buy_price=price  # Or some average if needed
                 )
                 db.session.add(portfolio_entry)
 
