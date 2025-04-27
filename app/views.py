@@ -218,6 +218,7 @@ def logout():
 @login_required
 def quote():
     """Get stock quote."""
+    stocks = {}
     if request.method == "POST":
         if not request.form.get("symbol"):
             return redirect("/quote", 400)
@@ -228,7 +229,8 @@ def quote():
 
         return render_template("quote.html", stocks = stocks)
 
-    return render_template("quote.html")
+    return render_template("quote.html", stocks=stocks
+                           )
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
