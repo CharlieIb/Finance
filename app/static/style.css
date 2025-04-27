@@ -68,6 +68,7 @@ table.styled-table td.positive {
 
 table.styled-table td.negative {
     color: red;
+}
 
 
 input.form-control {
@@ -96,34 +97,6 @@ input.form-control {
     color: red;
 }
 
-
-/* Style for account: hiding and showing content */
-
-.input-hidden {
-    visibility: hidden;
-}
-
-.input-visible {
-    visibility: visible;
-}
-
-.form-container.a{
-    text-align: left;
-    max-width: 400px;
-    margin-top: 0;
-    padding: 20px;
-    min-height: 300px
-}
-
-.form-container.b{
-    text-align: left;
-    max-width: 400px;
-    margin-top: 0;
-    padding: 20px;
-    min-height: 400px
-}
-
-
 .input-container {
     margin-top: 10px;
 }
@@ -135,11 +108,27 @@ input.form-control {
     box-sizing: border-box;
 }
 
+
+
+
+.input-group {
+    display: flex; /* Enable Flexbox for the input group */
+    align-items: center; /* Vertically align items in the center */
+}
+
+.input-group .form-control {
+    flex-grow: 1; /* Allow the input to take up remaining space */
+    margin-right: 8px; /* Add some spacing between input and button */
+}
+
+.input-group .btn-primary {
+    /* You can add specific styling for the button here if needed */
+}
+
 /* Account page specific CSS */
 
 #balance-box {
-    visibility: hidden; /* Initially hidden */
-    position: inline-flex;
+    /* visibility: hidden; Removed */
     left: 120px; /* Adjust distance from button */
     top: 0;
     border: 1px solid #ccc;

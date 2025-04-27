@@ -1,55 +1,75 @@
 {% extends "layout.html" %}
 
-{% block title %}
-    Account management
-{% endblock %}
+{% block title %} Account management {% endblock %}
 
 {% block main %}
-   <h1>
-        Account Management
-   </h1>
-<h2 style="text-align:left">Wallet options</h2>
-   <div class="form-container a" style="position: relative">
-       <button class="btn btn-primary" type="button" onclick="showBalance()">Display Balance</button>
-        <div id="balance-box">
-            <span>Your Balance: <strong>${{ cash }}</strong></span>
-        </div>
-       <form action="/cash" method="POST">
-           <input type="hidden" name="form_type" value="add_cash">
+<div class="container">
+    <h1 class="mt-4 mb-4">Account Management</h1>
 
-        <button id="add_cash" class="btn btn-primary" type="button" onclick="showInputs2()">Add Cash</button>
-           <input class="form-control input-hidden" placeholder="Amount" type="text" id="add_amount" name="add_amount">
-           <button id="add_cash_confirm" class="btn btn-primary input-hidden" type="button">Confirm</button>
-       </form>
-    </div>
-   <h2 style="text-align:left">Password settings</h2>
-   <div class="form-container b">
-        <form action="/account" method="post">
-            <input type="hidden" name="form_type" value="change_password">
-            <button id="changepassword" class="btn btn-primary" type="button" onclick="showInputs()"> Change Password</button>
-            <div class="input-container">
-                <input
-                    class="form-control  input-hidden"
-                    placeholder="Old Password"
-                    type="password"
-                    id="oldpassword"
-                    name="oldpassword">
-                <input
-                    class="form-control input-hidden"
-                    placeholder="New password"
-                    type="password"
-                    id="password1"
-                    name="password1">
-                <input
-                    class="form-control  input-hidden"
-                    placeholder="Re-type password"
-                    type="password"
-                    id="password2"
-                    name="password2">
-                <button id="changepassword2" class="btn btn-primary input-hidden" type="submit"> Change password</button>
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <h2 class="mb-3">Wallet options</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h3 class="">
+                            <strong>Balance:</strong> <span> ${{ cash }}</span>
+                        </h3>
+                    </div>
+                    <form action="/cash" method="POST">
+                        <div class="input-group">
+                            <input
+                                class="form-control"
+                                placeholder="Amount"
+                                type="text"
+                                id="add_amount"
+                                name="add_amount"
+                            />
+                            <button class="btn btn-primary add-funds-button" type="submit">
+                                Add Funds
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </form>
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="mb-3">Password settings</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="/account" method="post">
+                        <div class="input-container">
+                            <input
+                                class="form-control"
+                                placeholder="Old Password"
+                                type="password"
+                                id="oldpassword"
+                                name="oldpassword"
+                            />
+                            <input
+                                class="form-control"
+                                placeholder="New password"
+                                type="password"
+                                id="password1"
+                                name="password1"
+                            />
+                            <input
+                                class="form-control"
+                                placeholder="Re-type password"
+                                type="password"
+                                id="password2"
+                                name="password2"
+                            />
+                            <button id="changepassword2" class="btn btn-primary mt-3" type="submit">
+                                Change password
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="{{ url_for('static', filename='account.js') }}"></script>
+</div>
 
 {% endblock %}
