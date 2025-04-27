@@ -15,7 +15,8 @@
             <tr>
                 <th> Stock </th>
                 <th> Quantity </th>
-                <th> Price </th>
+                <th> Price (average of purchases) </th>
+                <th> Current Price </th>
                 <th> Quantity to be sold</th>
                 <th> Sell</th>
             </tr>
@@ -25,16 +26,17 @@
             <tr>
                 <td> {{ stock.stock_id }} </td>
                 <td> {{ stock.total_quantity }} </td>
-                <td> {{ stock.average_price}} </td>
+                <td> {{ '${:,.2f}'.format(stock.average_price) }} </td>
+                <td> {{ '${:,.2f}'.format(stock.current_price) }} </td>
+                <form method="POST" action="{{ url_for('sell') }}">
                 <td>
-                    <form method="POST" action="{{ url_for('sell') }}">
                         <input type="hidden" name="stock_id" value="{{ stock.stock_id }}">
-                        <input class="form-control mx-auto w-auto" name="quantity" placeholder="Quantity" type="number" min="1" max="{{ stock.total_quantity }}" required>
+                        <input class="form-control mx-auto w-auto" style="width: auto; min-width: 15ch; max-width: 20ch" name="quantity" placeholder="Quantity" type="number" min="1" max="{{ stock.total_quantity }}" required>
                 </td>
                 <td>
                         <button class="btn btn-primary" type="submit">Sell</button>
-                    </form>
                 </td>
+                </form>
             </tr>
             {% endfor %}
         </tbody>

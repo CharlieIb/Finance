@@ -29,11 +29,11 @@
                 <td> {{ stock.quantity }} </td>
                 <td class="{% if stock.transaction_type == 'buy' %}negative{% else %}positive{% endif %}">
                     {% if stock.transaction_type == 'buy' %}-{% else %}{% endif %}
-                    {{ '£{:,.2f}'.format(stock.price) }}
+                    {{ '${:,.2f}'.format(stock.price) }}
                 </td>
                 <td class="{% if stock.transaction_type == 'buy' %}negative{% else %}positive{% endif %}">
                     {% if stock.transaction_type == 'buy' %}-{% else %}{% endif %}
-                    {{ '£{:,.2f}'.format((stock.price)*(stock.quantity)) }}
+                    {{ '${:,.2f}'.format((stock.price)*(stock.quantity)) }}
                 </td>
                 <td> {{ stock.formatted_time }}</td>
             </tr>

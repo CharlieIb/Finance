@@ -297,6 +297,7 @@ def sell():
     username = user.username if user else "Unknown User"  # Fallback in case the user is not found
 
     # Fetch the user's stock portfolio using the ORM
+    stocks_with_price = []
     stocks = (
         db.session.query(
             StockPortfolio.stock_id,
@@ -307,6 +308,15 @@ def sell():
         .group_by(StockPortfolio.stock_id)
         .all()
     )
+    for stock in stocks:
+        current_price = lookup(stock.stock_id)['price']
+        stock_data = {
+            "stock_id": stock.stock_id,
+            "total_quantity": stock.total_quantity,
+            "average_price": stock.average_price,
+            "current_price": current_price,
+        }
+        stocks_with_price.append(stock_data)
 
     # Update the databases respective to the sale
     if request.method == "POST":
@@ -378,7 +388,7 @@ def sell():
         return redirect("/")
 
     # Render the sell template with the user's stock portfolio
-    return render_template("sell.html", username=username, stocks=stocks)
+    return render_template("sell.html", username=username, stocks=stocks_with_price)
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
